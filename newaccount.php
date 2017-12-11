@@ -8,7 +8,7 @@
 	$password = $data['password'];
 	$password2 = $data['password2'];
 	$email = $data['email'];
-	$location = $data['location'];
+	$persontype = $data['persontype'];
     
    //Connect to the database
     $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);    
@@ -29,7 +29,7 @@
     $isComplete = false;
 	}
 
-	if (!isset($location)) {
+	if (!isset($persontype)) {
 		$errorMessage .= " Please enter the type of member you are.";
     $isComplete = false;
 	}
@@ -66,7 +66,7 @@
         $hashedpass = crypt($password, getSalt());
         
         //Sql code insert tuple record
-        $insert = "INSERT INTO account(hashedpass,username,email,location ) VALUES ('$hashedpass','$username','$email','$location');";
+        $insert = "INSERT INTO account(hashedpass,username,email,persontype) VALUES ('$hashedpass','$username','$email','$persontype');";
     
         //Run the insert statement
         $result = queryDB($insert, $db);
