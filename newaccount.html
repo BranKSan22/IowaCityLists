@@ -67,10 +67,10 @@
 </div>
 
 <!-- Member Type-->
-<div class="form-group" ng-class="{ 'has-error' : accountForm.location.$invalid && accountForm.location.$touched, 'has-success' : !accountForm.location.$invalid && accountForm.location.$touched }">
+<div class="form-group" ng-class="{ 'has-error' : accountForm.persontype.$invalid && accountForm.location.$touched, 'has-success' : !accountForm.persontype.$invalid && accountForm.persontype.$touched }">
     <label>Type Of Member:</label>
-    <input type="location" class="form-control" name="location" ng-model="account.location" required/>
-    <p ng-show="accountForm.location.$invalid && accountForm.location.$touched" class="help-block">Tell us who you are! Student? Faculty Member? Commnity Member?</p>
+    <input type="persontype" class="form-control" name="persontype" ng-model="account.persontype" required/>
+    <p ng-show="accountForm.persontype.$invalid && accountForm.persontype.$touched" class="help-block">Tell us who you are! Student? Faculty Member? Commnity Member?</p>
 </div>
 
 <!-- Password -->
