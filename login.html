@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html ng-app="iowaList">
+<head>
+    <title>Iowa City Local Lists - Log In</title>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>      
+       
+    <!-- Bootstrap links -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+    <!-- end of bootstrap links -->
+    
+    <!-- AngularJS -->
+    <script src="angular.min.js"></script>
+    
+    <!--List module -->
+    <script type="text/javascript" src="list.module.js"></script>
+    
+    <!--Data controller -->
+    <script type="text/javascript" src="data.list.controller.js"></script>
+   
+        
+</head>
+
+<body style="background-color:gold;">
+    
+<!-- Content -->
+<div class="container" ng-controller="dataControl">
+
+
+    
+<!-- Title -->
+<div ng-include ng-init="menuHighlight = 4;"src="'header.html'"></div>
+
+<div class="row">
+    <div class="panel panel-default" class="col-xs-13">
+        <center><img src = https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/24301044_1733037483433900_2737551391918584195_n.jpg?oh=8de467a5b99abacf9b91de13ef07b745&oe=5A9B3B14></center>
+    </div>    
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
+        
+ <!--Account form-->       
+<form name="accountForm" novalidate>
+
+<!-- Username -->
+<div class="form-group" ng-class="{ 'has-error' : accountForm.username.$invalid && accountForm.username.$touched, 'has-success' : !accountForm.username.$invalid && accountForm.username.$touched }">
+    <label>Userame:</label>
+    <input type="text" class="form-control" name="username" ng-model="account.username" required/>
+    <p ng-show="accountForm.username.$invalid && accountForm.username.$touched" class="help-block">The username is required.</p>
+</div>
+
+<!-- Password -->
+<div class="form-group" ng-class="{ 'has-error' : accountForm.password.$invalid && accountForm.password.$touched, 'has-success' : !accountForm.password.$invalid && accountForm.password.$touched }">
+    <label>Password:</label>
+    <input type="password" class="form-control" name="password" ng-model="account.password" required/>
+    <p ng-show="accountForm.password.$invalid && accountForm.password.$touched" class="help-block">The password is required.</p>
+</div>
+
+
+<button class="btn btn-default" ng-click="login(account)" ng-disabled="accountForm.$invalid">Log in</button>
+</form>
+    </div>
+    <center><img src = https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/24900007_1733037333433915_1719375698590400188_n.jpg?oh=93569b230b603dd3da94559e03c7385d&oe=5AD1494E></center>
+</div>
+</div>
+</body>
+</html>

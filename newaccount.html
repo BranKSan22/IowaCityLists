@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html ng-app="iowaList">
+<head>
+    <title>Iowa City Local Lists - New User? Create An Account!</title>
+       
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>      
+    
+    <!--Bootstrap links -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+    <!-- end of bootstrap links -->
+    
+    <!-- AngularJS -->
+    <script src="angular.min.js"></script>
+    
+    <!-- soccer module -->
+    <script type="text/javascript" src="list.module.js"></script>
+    
+    <!-- data controller -->
+    <script type="text/javascript" src="data.list.controller.js"></script>
+
+</head>
+
+<body style="background-color:gold;">
+    
+    
+<!-- Content -->
+<div class="container" ng-controller="dataControl">
+
+
+    
+<!-- Title -->
+<div ng-include ng-init="menuHighlight = 3;"src="'header.html'"></div>
+
+<div class="row">
+    <div class="panel panel-default" class="col-xs-14">
+       <center><img src= https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/24301435_1733037500100565_2323593064779484813_n.jpg?oh=45e6970bf1ada0313ca670836f897a27&oe=5AD5372E></center>
+    </div>    
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
+        
+<form name="accountForm" novalidate>
+
+<!-- Username -->
+<div class="form-group" ng-class="{ 'has-error' : accountForm.username.$invalid && accountForm.username.$touched, 'has-success' : !accountForm.username.$invalid && accountForm.username.$touched }">
+    <label>Userame:</label>
+    <input type="text" class="form-control" name="username" ng-model="account.username" required/>
+    <p ng-show="accountForm.username.$invalid && accountForm.username.$touched" class="help-block">The username is required.</p>
+</div>
+
+<!-- Email -->
+<div class="form-group" ng-class="{ 'has-error' : accountForm.email.$invalid && accountForm.email.$touched, 'has-success' : !accountForm.email.$invalid && accountForm.email.$touched }">
+    <label>Email:</label>
+    <input type="text" class="form-control" name="email" ng-model="account.email" required/>
+    <p ng-show="accountForm.email.$invalid && accountForm.email.$touched" class="help-block">The email address is required.</p>
+</div>
+
+<!-- Member Type-->
+<div class="form-group" ng-class="{ 'has-error' : accountForm.location.$invalid && accountForm.location.$touched, 'has-success' : !accountForm.location.$invalid && accountForm.location.$touched }">
+    <label>Type Of Member:</label>
+    <input type="location" class="form-control" name="location" ng-model="account.location" required/>
+    <p ng-show="accountForm.location.$invalid && accountForm.location.$touched" class="help-block">Tell us who you are! Student? Faculty Member? Commnity Member?</p>
+</div>
+
+<!-- Password -->
+<div class="form-group" ng-class="{ 'has-error' : accountForm.password.$invalid && accountForm.password.$touched, 'has-success' : !accountForm.password.$invalid && accountForm.password.$touched }">
+    <label>Password:</label>
+    <input type="password" class="form-control" name="password" ng-model="account.password" required/>
+    <p ng-show="accountForm.password.$invalid && accountForm.password.$touched" class="help-block">The password is required.</p>
+</div>
+
+<!-- Reinput of password -->
+<div class="form-group" ng-class="{ 'has-error' : accountForm.password2.$invalid && accountForm.password2.$touched, 'has-success' : !accountForm.password2.$invalid && accountForm.password2.$touched }">
+    <label>Enter password again:</label>
+    <input type="password" class="form-control" name="password2" ng-model="account.password2" required/>
+    <p ng-show="accountForm.password2.$invalid && accountForm.password2.$touched" class="help-block">The password is required a second time.</p>
+</div>
+
+<button class="btn btn-default" ng-click="newAccount(account)" ng-disabled="accountForm.$invalid">Save</button>
+</form>
+    </div>
+<div class="row">
+    <div class="col-xs-12">
+        <center><img src= https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/24301193_1733037373433911_3361459736617834626_n.jpg?oh=8fe329bc0de31e796813f825c8517616&oe=5AC8F882></center> 
+</div>
+</div>
+</body>
+</html>

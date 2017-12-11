@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html ng-app="iowaList">
+<head>
+    <title>Iowa City Local Lists - Save Lists</title>
+       
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>      
+    
+    <!-- bootstrap links -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+    <!-- end of bootstrap links -->
+    
+    <!-- AngularJS -->
+    <script src="angular.min.js"></script>
+    
+    <!-- soccer module -->
+    <script type="text/javascript" src="list.module.js"></script>
+    
+    <!-- data controller -->
+    <script type="text/javascript" src="data.list.controller.js"></script>
+
+</head>
+
+<body style="background-color:gold;">
+    
+    
+    <!-- Content -->
+    <div class="container" ng-controller="dataControl">
+
+    <!-- Title -->
+    <div ng-include ng-init="menuHighlight = 1;"src="'header.html'"></div>
+
+    <div class="row">
+        <div class="panel panel-default" class="col-xs-14">
+            <center><img src=https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/24862588_1733086443429004_2437702898767679064_n.jpg?oh=a9aa83814b4fe428cd63174731db11dc&oe=5ACED8A5 ></center>
+        </div>    
+    </div>
+    
+    <!--Adds attributes to userlist page from template form and allows users to save and add more -->
+    <div ng-init="getAttr()">
+        <form name="enterItemForm" novalidate>
+            <div ng-repeat="attr in attrs track by $index">
+                {{attr.label}} <input type="text" class="form-control" ng-model="newitem.value[$index]" Required input for this item./>
+               <p ng-show="enterItemForm.$invalid && enterItemForm.$touched" class="help-block">You must enter some value for this Item.</p>
+            </div>
+            <button class="btn btn-default" ng-click=" newitem(newitem.value)" ng-disabled="accountForm.$invalid"> Save/Add More </button>
+            <button class="btn btn-default" ng-disabled="accountForm.$invalid"><a href="userlist.html">Take Me to My Lists</button>
+        </form>
+    </div>
+    <div>
+</html>

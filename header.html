@@ -1,0 +1,47 @@
+<nav class="navbar navbar-inverse" ng-init="isloggedin()">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><strong></strong></a>
+      <a class="navbar-brand" href="index.html">Iowa City Local Lists</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="nav navbar-nav">
+        <li ng-class="{'active' : (menuHighlight == 0)}"><a href="index.html">Home</a></li>
+        <!-- added: create new list, see default lists-->
+        <li ng-show="isloggedin" ng-class="{'active' : (menuHighlight == 1)}"><a href="choosetemplate.html">New List</a></li>
+                <!-- User List -->     
+        <li ng-show="isloggedin" ng-class="{'active' : (menuHighlight == 2)}"><a href="userlist.html">My Lists</a></li>
+        <li ng-show="isloggedin" ng-class="{'active' : (menuHighlight == 3)}"><a href="alllist.html">Local Lists</a></li>   
+        <li ng-show="isloggedin" ng-class="{'active' : (menuHighlight == 4)}"><a href="twitterfeed.html">Twitter</a></li>
+        
+        
+                
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li <!-- Search bar -->
+          <div class='row'>
+            <div class='col-xs-12'>
+              <p class="navbar-text"> Search: <input ng-model ='query[queryBy]' /></p>
+            </div>
+          </div>
+        <li ng-show="!isloggedin" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sign In<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li ng-show="!isloggedin"><a href="newaccount.html"> Sign Up</a></li>
+            <li ng-show="!isloggedin"><a href="login.html">Already A User? Log In</a></li>
+          </ul>
+        </li>
+        <li ng-show="isloggedin" ng-class="{'active' : (menuHighlight == 7)}"><a ng-click="logout()" href="">Log out</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav> 

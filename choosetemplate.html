@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html ng-app="iowaList">
+<head>
+    <title>Iowa City Local Lists - Create a new list: choose your template</title>
+       
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>      
+    
+    <!-- Bootstrap links -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+    <!-- end of bootstrap links -->
+    
+    <!-- AngularJS -->
+    <script src="angular.min.js"></script>
+    
+    <!-- List module -->
+    <script type="text/javascript" src="list.module.js"></script>
+    
+    <!-- Data controller -->
+    <script type="text/javascript" src="data.list.controller.js"></script>
+
+</head>
+
+<body style="background-color:gold;">
+    
+    
+    <!-- Content -->
+    <div class="container" ng-controller="dataControl">
+    
+
+    <!-- Title -->
+    <div ng-include ng-init="menuHighlight = 1;"src="'header.html'"></div>
+
+ <div class="row"> 
+  <div class="panel panel-default" class="col-xs-14" >
+         <center><img src = https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/24176842_1731928320211483_8999037105891612857_n.jpg?oh=87b0759853835c267cb806ce451cfd3a&oe=5ACA9EBF></center>
+        </div>    
+    </div>
+
+<!-- User is prompted to crete/enter a name for the newe list -->
+    <div class="row">
+        <div class="col-xs-12" align="left">
+        <!-- Form create for name of list -->
+        <form name="enterListName" novalidate">
+        <div class="form-group" ng-class="{ 'has-error' : enterListName.name.$invalid && enterListName.name.$touched, 'has-success' : !enterListName.name.$invalid && enterListName.name.$touched }">
+            <label>Enter Name of List:</label>
+            <input type="text" class="form-control" name="name" ng-model="list.name" required/>
+            <p ng-show="enterListName.name.$invalid && enterListName.name.$touched" class="help-block">Please enter a name for the new list (1 character at least).</p>
+        </div>
+        <div class= "row">
+            <div class=" col-xs-12" align="left">
+            <p>Select Template: <select ng-model="list.template_id">
+                <option ng-repeat="template in templates" value="{{template.id}}">{{template.t_name}}</option>
+            </select>    <button class="btn btn-default" ng-click="newList(list)" ng-disabled="accountForm.$invalid">Create List</button></p>
+            </div>
+        </div>
+    
+       <div>
+            <div class= "row">
+            <div class=" col-xs-12" align="center">
+            <img src="https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/24231790_1725320010872314_5793989530137349320_n.jpg?oh=2bdeeab77b8c57c4427829e8a43f47fd&oe=5AD6C06A" alt="Iowa City Limit" height="400">
+        </div>
+    
+        </div>
+    </div>
+        
+</body>
+</html>
+
+    

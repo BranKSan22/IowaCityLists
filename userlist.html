@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html ng-app="iowaList">
+<head>
+    <title>Iowa City Local Lists</title>    
+<!-- JQuery -->
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+   
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<!-- AngularJS-->
+<script src="angular.min.js"></script>
+
+<!-- List module -->
+<script type="text/javascript" src="list.module.js"></script>
+
+<!-- Data controller -->
+<script type="text/javascript" src="data.list.controller.js"></script>
+
+<!-- Trust Html filter -->
+<script type="text/javascript" src="list.filter.js"></script>
+
+</head>
+
+<!--Changes background to gold-->
+<body style="background-color:gold;">
+
+<!-- Container for my content -->
+<div class="container" ng-controller='dataControl'>
+
+<!-- Title including header -->
+<div ng-include ng-init="menuHighlight=2;" src="'header.html'"></div>
+
+<div class="row"> 
+  <div class="panel panel-default" class="col-xs-14" >
+    <center><img src= https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/24862503_1733043350099980_2802134088242702436_n.jpg?oh=fe3349c520582f1270316a49e9cd6a79&oe=5A928477></center>
+  </div>
+
+
+<!-- SelectArea allow's only users content to show up on My List -->
+<div class="row">
+  <div class="col-xs-12" ng-init="selectArea('mine')">
+    
+  </div>
+</div>
+
+<!--Ng-repeat to reiterate through list database -->
+<div ng-repeat="list in data | filter:areaFilter">
+    <div class="panel-heading">
+        <h4>{{list.name}}</h4>
+        <div class="panel panel-default" ng-repeat="item in list.items | filter:query">
+            <div class="panel-body">
+                <h4>{{item.name}}</h4>
+                
+                <div ng-repeat="attribute in item.attributes">
+                    
+                    <div ng-init="setEditMode(false, attribute)"></div>
+                    
+                    <div ng-if="!getEditMode(attribute)">
+                        
+                        <div ng-if="attribute.type=='video'">
+                                <span ng-bind-html="attribute.value | trustHtml"></span>
+                        </div>
+                        <!-- Allows users to edit or edit and delete items within the list -->
+                        <strong>{{attribute.label}}</strong>: {{attribute.value}} <button class="btn btn-primary" ng-click="setEditMode(true, attribute)">Edit</button> <button align="right" class ="btn btn-primary" ng-click="deleteAttribute(attribute)">Delete</button>
+                    </div>
+                    <div ng-if="getEditMode(attribute)">
+                        <form>
+                        <!-- Allows users to update and save items within the list -->
+                            <strong>{{attribute.label}}</strong>: <input type="text" ng-model="editattribute.value"> <button class="btn btn-primary" ng-click="updateAttribute(editattribute)">Save</button> <button class="btn btn-primary" ng-click="setEditMode(false, attribute)">Cancel</button> 
+                        </form>
+                </div>
+            </div>
+        </div>    
+    </div>
+        <!-- Allows users to delete entire list -->
+        <button class="panel-heading"class="col-xs-14" class = 'btn btn-primary' ng-click="deleteList(list.name, list.id)">Delete</button>
+        <!-- Allows users to return back to template and add more items to specific lists -->
+        <button class="btn btn-default" ng-click=" addList(list.id)" ng-disabled="accountForm.$invalid"<a href="editlist.html"></a>Add More</button>
+ </div>
+</div>
+</body>
+</html>
+
+
+</html>

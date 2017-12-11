@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html ng-app="iowaList">
+<head>
+    <title>Iowa City Local Lists</title>    
+<!-- JQuery -->
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+    
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<!-- AngularJS-->
+<script src="angular.min.js"></script>
+
+<!-- List module -->
+<script type="text/javascript" src="list.module.js"></script>
+
+<!-- Data controller -->
+<script type="text/javascript" src="data.list.controller.js"></script>
+
+<!-- Trust Html filter -->
+<script type="text/javascript" src="list.filter.js"></script>
+</head>
+
+<body style="background-color:gold;">
+
+<!-- Container for my content -->
+<div class="container" ng-controller='dataControl'>
+
+<!-- Title-->
+<div ng-include ng-init="menuHighlight=3;" src="'header.html'"></div>
+
+<div class="row"> 
+  <div class="panel panel-default" class="col-xs-14" >
+    <center><img src= https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/24862369_1733044073433241_2445127055601670111_n.jpg?oh=e69c323d7780a4d2890651d7944a3200&oe=5AD754A5></center>
+  </div>
+
+<!--Loads lists depending on the template selected by the user -->
+<div class="row"> 
+ <div class="panel panel-default">
+<div ng-show="isloggedin" ng-repeat="list in data | filter:areaFilter">
+    <h2>{{list.name}}</h2>
+    <!-- Button that allows user to vote up or down on any list in the Local Lists section -->
+    <button  class="btn btn-success" ng-click="thumbsup(list.id)"><i class="glyphicon glyphicon-thumbs-up"></i></button>
+    <button  class="btn btn-default" ng-click="thumbsdown(list.id)"><i class="glyphicon glyphicon-thumbs-down"></i></button>
+    <h4>Number of Votes:{{list.voteCounter}}</h4>
+<div class="panel panel-default" ng-repeat="item in list.items | filter:query">
+    <div class="panel-heading">
+            <h4>{{item.name}}</h4>
+        </div>
+    <div ng-repeat="attribute in item.attributes">
+        <div ng-if="attribute.type=='text'">
+            <strong>{{attribute.label}}</strong>: {{attribute.value}}
+        </div>
+        <div ng-if="attribute.type=='video'">
+            <div class="embed-responsive embed-responsive-16by9">
+                <span ng-bind-html="attribute.value | trustHtml"></span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
